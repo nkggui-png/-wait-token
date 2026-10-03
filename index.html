@@ -1,355 +1,381 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>$WAIT — Still Waiting For Altseason</title>
-<style>
-:root{--bg:#05080d;--panel:#0b1119;--line:#26303c;--text:#f4f0e8;--muted:#9ba4ae;--gold:#ffc72c;--gold2:#ffdf70;--red:#ff554f;--green:#38e28c}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 75% 10%,#17253a 0,#080d14 32%,#05080d 65%);color:var(--text);font-family:Inter,Arial,sans-serif}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.10;background-image:linear-gradient(90deg,transparent 49%,#fff 50%,transparent 51%),linear-gradient(#fff 49%,transparent 50%);background-size:38px 38px;mask-image:linear-gradient(to bottom,#000,transparent 70%)}
-a{color:inherit;text-decoration:none}.wrap{max-width:1500px;margin:auto;padding:0 28px}.nav{height:72px;display:flex;align-items:center;gap:34px;border-bottom:1px solid #202a35}.logo{font-weight:950;font-size:30px;letter-spacing:-2px}.logo b{color:var(--gold)}.navlinks{display:flex;gap:26px;font-size:13px;font-weight:800;text-transform:uppercase}.navlinks a:hover{color:var(--gold)}.buy{margin-left:auto;background:var(--gold);color:#111;padding:14px 23px;border-radius:12px;font-weight:950;border:0}
-.hero{min-height:560px;display:grid;grid-template-columns:40% 60%;align-items:center;position:relative;overflow:hidden}.hero-copy{z-index:2;padding:55px 0}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:#d6dce3;font-size:14px}.brand{font-size:clamp(80px,12vw,175px);line-height:.75;font-weight:1000;letter-spacing:-10px;margin:25px 0 30px}.brand b{color:var(--gold)}.tag{font-size:clamp(30px,4vw,58px);line-height:.95;font-weight:950;text-transform:uppercase;max-width:600px}.tag span{color:var(--gold)}.sub{max-width:520px;color:#c4cad1;font-size:16px;line-height:1.6}.actions{display:flex;gap:12px;margin:28px 0}.outline{padding:14px 23px;border:1px solid var(--gold);border-radius:12px;font-weight:900}.hero-art{min-height:560px;position:relative;background:radial-gradient(circle at 50% 45%,#2a3c52 0,#111c29 42%,transparent 70%);display:flex;align-items:center;justify-content:center}.character{width:min(95%,700px);aspect-ratio:1.2/1;border-radius:45% 45% 15% 15%;background:linear-gradient(145deg,#202c3b,#090e14);box-shadow:0 35px 80px #000b;position:relative;overflow:hidden}.character:before{content:"";position:absolute;inset:12% 8%;border-radius:45%;background:radial-gradient(circle at 52% 32%,#c77a3a 0 15%,#181c22 16% 27%,#171d25 28%);box-shadow:inset 0 0 0 12px #111}.hoodie{position:absolute;left:34%;bottom:12%;width:42%;height:40%;background:#e6dfd3;border-radius:35% 35% 18% 18%;color:#111;text-align:center;padding-top:70px;font-size:45px;font-weight:1000;transform:rotate(-3deg)}.dog{position:absolute;right:7%;bottom:8%;font-size:110px;filter:drop-shadow(0 15px 10px #000)}.screen{position:absolute;top:8%;left:5%;right:5%;height:25%;background:#07131d;border:1px solid #31465a;border-radius:12px;padding:18px;color:#ff625a;font-weight:950;font-size:25px;text-align:center}.note{position:absolute;background:#f4d76d;color:#17120b;padding:12px 18px;box-shadow:8px 10px 0 #0007;font-weight:900}.n1{left:3%;top:42%;transform:rotate(-4deg)}.n2{right:3%;top:43%;transform:rotate(5deg)}.stats{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;gap:20px}.stat small{display:block;color:var(--muted);text-transform:uppercase;font-size:11px}.stat strong{font-size:22px}.section{padding:42px 0}.section h2{font-size:34px;margin:0 0 20px}.goals{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.goal{border-top:2px solid var(--gold);padding:18px;background:linear-gradient(180deg,#111a24,#080d13)}.goal .icon{font-size:30px}.goal b{display:block;margin:12px 0 7px}.bar{height:8px;background:#222d39;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;width:25%;background:var(--gold)}.calc{border:1px solid #755f1d;background:linear-gradient(135deg,#101821,#070b10);border-radius:18px;padding:28px;box-shadow:0 20px 60px #0008}.calc-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:20px}.field label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;margin-bottom:8px}.field input{width:100%;background:#070b10;border:1px solid #3a4653;color:white;border-radius:10px;padding:15px;font-size:18px}.scenarios{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.scenario{padding:13px 8px;border:1px solid #33404d;border-radius:10px;background:#0a1017;color:#ddd;cursor:pointer}.scenario.active{border-color:var(--gold);background:#2a2209;color:var(--gold2)}.result{background:#151d25;border:1px solid #344150;border-radius:12px;padding:18px}.result .big{font-size:32px;font-weight:950;color:var(--gold)}.warning{color:#aeb7c1;font-size:12px;line-height:1.5}.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.card{min-height:160px;padding:20px;border:1px solid var(--line);border-radius:14px;background:#0b121a}.card h3{margin:0 0 12px}.timeline{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.year{background:#101821;border:1px solid #293542;border-radius:12px;overflow:hidden}.year .pic{height:125px;background:linear-gradient(135deg,#26384c,#101721);display:flex;align-items:center;justify-content:center;font-size:45px}.year p{padding:10px;margin:0;font-size:12px}.footer{padding:45px 0;border-top:1px solid var(--line);color:var(--muted);display:flex;justify-content:space-between}
-@media(max-width:950px){.navlinks{display:none}.hero{grid-template-columns:1fr}.hero-art{min-height:390px}.stats{grid-template-columns:repeat(2,1fr)}.goals,.cards{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:repeat(2,1fr)}.calc-grid{grid-template-columns:1fr}.brand{letter-spacing:-5px}.wrap{padding:0 18px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="$WAIT — мемкоин и история о терпении, сообществе и продуктах, которые строятся, пока ждёшь альтсезон.">
+  <title>$WAIT — Всё ещё ждём альтсезон</title>
+  <link rel="preload" href="assets/wait-hero.png" as="image" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="purchase.js" defer></script>
+  <script src="app.js?v=20261003-5" defer></script>
 </head>
 <body>
-<header class="wrap nav">
-<a class="logo" href="#"><b>$</b>WAIT</a>
-<nav class="navlinks">
-<a href="#about">О проекте</a>
-<a href="#history">История</a>
-<a href="#goals">Цели</a>
-<a href="#calc">Калькулятор</a>
-<a href="#tokenomics">Токеномика</a>
-<a href="#roadmap">Roadmap</a>
-<a href="#faq">FAQ</a>
-</nav>
-<a class="buy" href="#calc">КУПИТЬ $WAIT →</a>
-</header>
-
-<main class="wrap">
-
-<section class="hero">
-<div class="hero-copy">
-<div class="eyebrow">Мемкоин для тех, кто всё ещё верит</div>
-<div class="brand"><b>$</b>WAIT</div>
-<div class="tag">Still waiting<br>for <span>altseason</span></div>
-<p class="sub">Мы не просто ждём. Мы строим сообщество людей, которые верят в следующий цикл. Ждём. Держим. Развиваем. Вместе.</p>
-<div class="actions">
-<a class="buy" href="#calc">КУПИТЬ $WAIT →</a>
-<a class="outline" href="#about">О ПРОЕКТЕ</a>
-</div>
-</div>
-
-<div class="hero-art">
-<div class="character">
-<div class="screen">ALTSEASON<br>SOON… 📉</div>
-<div class="note n1">
-PLAN:<br>
-☐ ALTSEASON<br>
-☐ NEW CAR<br>
-☐ CLEAR DEBTS
-</div>
-<div class="note n2">JUST<br>WAIT…</div>
-<div class="hoodie">WAIT</div>
-<div class="dog">🐕</div>
-</div>
-</div>
-</section>
-
-<section class="stats">
-<div class="stat">
-<small>Токен</small>
-<strong>$WAIT</strong>
-</div>
-<div class="stat">
-<small>Демо цена</small>
-<strong>$0.00037</strong>
-</div>
-<div class="stat">
-<small>Рын. кап.</small>
-<strong>$3.7M</strong>
-</div>
-<div class="stat">
-<small>Ликвидность</small>
-<strong>$420K</strong>
-</div>
-<div class="stat">
-<small>Статус</small>
-<strong>STILL WAITING</strong>
-</div>
-</section>
-
-<section id="goals" class="section">
-<h2>НАШИ ЦЕЛИ</h2>
-
-<div class="goals">
-
-<div class="goal">
-<div class="icon">🚀</div>
-<b>Рост сообщества</b>
-<small>12,458 / 100,000</small>
-<div class="bar"><i style="width:18%"></i></div>
-</div>
-
-<div class="goal">
-<div class="icon">📈</div>
-<b>Листинги</b>
-<small>DEX → CEX</small>
-<div class="bar"><i style="width:30%"></i></div>
-</div>
-
-<div class="goal">
-<div class="icon">🚗</div>
-<b>Новая машина</b>
-<small>Там, где не пешком</small>
-<div class="bar"><i style="width:25%"></i></div>
-</div>
-
-<div class="goal">
-<div class="icon">🏠</div>
-<b>Свой дом</b>
-<small>Финансовая свобода</small>
-<div class="bar"><i style="width:16%"></i></div>
-</div>
-
-<div class="goal">
-<div class="icon">🌴</div>
-<b>Путешествия</b>
-<small>Смотреть мир</small>
-<div class="bar"><i style="width:22%"></i></div>
-</div>
-
-<div class="goal">
-<div class="icon">∞</div>
-<b>Наследие</b>
-<small>Для следующего поколения</small>
-<div class="bar"><i style="width:8%"></i></div>
-</div>
-
-</div>
-</section>
-
-<section id="calc" class="section">
-<div class="calc">
-
-<h2>КАЛЬКУЛЯТОР БОГАТСТВА</h2>
-
-<p class="warning">
-Посчитай возможный сценарий стоимости твоих $WAIT через 5 лет.
-Это иллюстративная модель, не финансовый совет и не обещание доходности.
-</p>
-
-<div class="calc-grid">
-
-<div>
-
-<div class="field">
-<label>Количество $WAIT</label>
-<input id="amount" type="number" min="0" value="1000000">
-</div>
-
-<br>
-
-<div class="field">
-<label>Текущая цена USD</label>
-<input id="current" type="number" min="0" step="0.000001" value="0.00037">
-</div>
-
-</div>
-
-<div>
-
-<div class="field">
-<label>Сценарий цены через 5 лет</label>
-</div>
-
-<div class="scenarios">
-
-<button class="scenario" data-price=".01">$0.01</button>
-
-<button class="scenario active" data-price=".05">$0.05</button>
-
-<button class="scenario" data-price=".10">$0.10</button>
-
-<button class="scenario" data-price=".50">$0.50</button>
-
-</div>
-
-<p class="warning">
-Сценарии нужны для сравнения, а не для прогнозирования рынка.
-</p>
-
-</div>
-
-<div class="result">
-
-<small>Текущая стоимость</small>
-
-<div class="big" id="now">$370</div>
-
-<small>При выбранном сценарии через 5 лет</small>
-
-<div class="big" id="future">$50,000</div>
-
-<small id="multiple">≈ 135× от текущей стоимости</small>
-
-</div>
-
-</div>
-</div>
-</section>
-
-<section id="about" class="section">
-
-<div class="cards">
-
-<div class="card">
-<h3>О ПРОЕКТЕ</h3>
-<p>Почему мы ждём и почему WAIT — это состояние целого рынка.</p>
-</div>
-
-<div class="card" id="history">
-<h3>ИСТОРИЯ</h3>
-<p>Путь от первого “soon” до очередного “any day now”.</p>
-</div>
-
-<div class="card" id="tokenomics">
-<h3>ТОКЕНОМИКА</h3>
-<p>Прозрачная структура токена и распределение для сообщества.</p>
-</div>
-
-<div class="card" id="roadmap">
-<h3>ROADMAP</h3>
-<p>Наш путь. Пока ждём — строим.</p>
-</div>
-
-<div class="card" id="faq">
-<h3>FAQ</h3>
-<p>Ответы на главные вопросы ждуна.</p>
-</div>
-
-</div>
-</section>
-
-<section class="section">
-
-<h2>ЖИЗНЕННЫЙ ПУТЬ / ЦИКЛ</h2>
-
-<div class="timeline">
-
-<div class="year">
-<div class="pic">🚗</div>
-<p><b>2021</b><br>Большие планы.</p>
-</div>
-
-<div class="year">
-<div class="pic">📉</div>
-<p><b>2022</b><br>Первые дипы.</p>
-</div>
-
-<div class="year">
-<div class="pic">🍜</div>
-<p><b>2023</b><br>Держим.</p>
-</div>
-
-<div class="year">
-<div class="pic">🏷️</div>
-<p><b>2024</b><br>Машина заложена.</p>
-</div>
-
-<div class="year">
-<div class="pic">💻</div>
-<p><b>2025</b><br>Всё ещё ждём.</p>
-</div>
-
-<div class="year">
-<div class="pic">🌅</div>
-<p><b>2026</b><br>Новые надежды.</p>
-</div>
-
-<div class="year">
-<div class="pic">👑</div>
-<p><b>…</b><br>ALTSEASON SOON.</p>
-</div>
-
-</div>
-</section>
-
-<footer class="footer">
-<span>$WAIT — STILL WAITING FOR ALTSEASON</span>
-<span>Not financial advice.</span>
-</footer>
-
-</main>
-
-<script>
-const amount = document.querySelector('#amount');
-const current = document.querySelector('#current');
-const now = document.querySelector('#now');
-const future = document.querySelector('#future');
-const multiple = document.querySelector('#multiple');
-
-let price = 0.05;
-
-const money = value =>
-  new Intl.NumberFormat('en-US',{
-    style:'currency',
-    currency:'USD',
-    maximumFractionDigits:value < 1 ? 4 : 0
-  }).format(value);
-
-function calc(){
-
-  const n = Math.max(
-    0,
-    Number(amount.value) || 0
-  );
-
-  const c = Math.max(
-    0,
-    Number(current.value) || 0
-  );
-
-  const f = n * price;
-
-  now.textContent = money(n * c);
-
-  future.textContent = money(f);
-
-  multiple.textContent =
-    n * c > 0
-      ? '≈ ' + (f / (n * c)).toFixed(1) + '× от текущей стоимости'
-      : 'Введите текущую цену';
-}
-
-document
-  .querySelectorAll('.scenario')
-  .forEach(button => {
-
-    button.addEventListener('click', () => {
-
-      document
-        .querySelectorAll('.scenario')
-        .forEach(item =>
-          item.classList.remove('active')
-        );
-
-      button.classList.add('active');
-
-      price = Number(button.dataset.price);
-
-      calc();
-    });
-
-  });
-
-amount.addEventListener('input',calc);
-current.addEventListener('input',calc);
-
-calc();
-</script>
-
+  <svg class="type-filters" aria-hidden="true" focusable="false"><defs><filter id="dry-brush" x="-8%" y="-8%" width="116%" height="116%"><feTurbulence type="fractalNoise" baseFrequency=".045 .12" numOctaves="1" seed="12" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="1.35" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="$WAIT — главная">
+        <img class="brand-logo" src="assets/wait-logo.png" alt="">
+        <span class="brand-wordmark" aria-hidden="true"><strong>WAIT</strong><small>MEME COIN</small></span>
+      </a>
+      <a class="header-home" href="#home" aria-label="Главная"><span aria-hidden="true">⌂</span><span>Главная</span></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false"><span></span></button>
+      <nav class="primary-nav" id="site-nav" aria-label="Главная навигация">
+        <a href="#about">О проекте</a>
+        <a href="#history">История</a>
+        <a href="#goals">Цели</a>
+        <a href="#presale">Пресейл</a>
+        <a href="#tokenomics">Токеномика</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#app">Приложение</a>
+        <a href="#community">Сообщество</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <div class="social-links" aria-label="Социальные сети">
+          <a class="social-link social-x" href="https://x.com/waitt122?s=11" target="_blank" rel="noopener noreferrer" aria-label="X">𝕏</a>
+          <a class="social-link social-tiktok" href="https://www.tiktok.com/@waittok2?_r=1&amp;_t=ZG-9AFaHgIhptx" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.7 3c.3 2.3 1.6 3.7 4.3 3.9v3.4a9 9 0 0 1-4.3-1.2v6.3a6.6 6.6 0 1 1-6.6-6.6c.5 0 1 .1 1.4.2v3.6a3 3 0 1 0 1.7 2.8V3h3.5Z" fill="currentColor"/></svg></a>
+        </div>
+        <button class="language-toggle" id="language-toggle" type="button" aria-label="Переключить язык на английский" aria-pressed="false"><span data-lang-choice="ru" class="is-active">RU</span><i>/</i><span data-lang-choice="en">EN</span></button>
+        <a class="button button-yellow button-header" href="#presale">Купить $WAIT <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-haze" aria-hidden="true"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> мемкоин для тех, кто всё ещё ждёт</p>
+          <h1 class="hero-title" id="hero-title"><span>$</span>WAIT</h1>
+          <p class="hero-tagline">STILL WAITING<br>FOR <em>ALTSEASON</em></p>
+          <p class="hero-description">Мемкоин для тех, кто всё ещё верит в альтсезон.<br>Мы не просто ждём. Мы строим сообщество, которое верит в следующий цикл. Ждём. Держим. Развиваемся. Вместе.</p>
+          <div class="hero-actions">
+            <a class="button button-yellow button-large" href="#presale">Купить $WAIT <span aria-hidden="true">→</span></a>
+            <a class="button button-outline button-large" href="#about">О проекте</a>
+          </div>
+          <div class="hero-caption"><span>✦</span> NO PROMISES ABOUT TOMORROW. BUILDING TODAY.</div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Герой $WAIT и корги ждут альтсезон в трейдинговой комнате на фоне ночного города">
+          <div class="chart-glass chart-glass-one"><small>ALTSEASON</small><b>SOON...</b><svg viewBox="0 0 180 55" aria-hidden="true"><path d="M2 43 19 37 32 41 45 27 59 35 72 14 88 24 102 17 116 33 131 9 148 19 164 4 178 10" /></svg></div>
+          <div class="art-sticky"><b>PLAN:</b><span>☑ WAIT</span><span>☐ BUY MORE</span><span>☐ ALTSEASON</span><span>☐ REPEAT</span></div>
+          <div class="art-note">ALTSEASON<br><strong>SOON?</strong></div>
+          <div class="art-crown" aria-hidden="true">♛</div>
+          <div class="hero-art-vignette"></div>
+        </div>
+        <aside class="hero-note">
+          <span class="note-tape"></span>
+          <p>MORE THAN<br>A MEME.<br>A COMMUNITY<br>THAT BELIEVES.</p>
+          <span class="note-smile" aria-hidden="true">☺</span>
+        </aside>
+      </div>
+      <div class="hero-bottomline"><span>01 / THE BEGINNING</span><span>WAITING FOR THE NEXT CYCLE</span><span>BUILDING TOGETHER <b>↘</b></span></div>
+    </section>
+
+    <section class="market-strip" aria-label="Состояние токена">
+      <div class="container market-grid">
+        <div class="market-brand"><span class="coin-mark"><img src="assets/wait-logo.png" alt=""></span><span><b>$WAIT</b><small>ПАРАМЕТРЫ ПРОЕКТА</small></span></div>
+        <div class="market-stat"><span>ТЕКУЩАЯ ЦЕНА</span><b data-value="price">—</b></div>
+        <div class="market-stat"><span>MARKET CAP</span><b data-value="marketCap">—</b></div>
+        <div class="market-stat"><span>ЛИКВИДНОСТЬ</span><b data-value="liquidity">—</b></div>
+        <div class="market-stat"><span>HOLDERS</span><b data-value="holders">—</b></div>
+        <div class="market-stat contract-stat"><span>КОНТРАКТ</span><b data-value="contract">Не опубликован</b></div>
+        <p class="market-disclaimer">Данные появятся после объявления параметров запуска.</p>
+      </div>
+    </section>
+
+    <section class="goal-ribbon" aria-label="Цели проекта">
+      <div class="container ribbon-grid">
+        <a class="ribbon-goal" href="#goals"><span class="ribbon-icon" aria-hidden="true">↗</span><span><b>РОСТ СООБЩЕСТВА</b><small>Шаг за шагом</small><i><u></u></i></span></a>
+        <a class="ribbon-goal" href="#goals"><span class="ribbon-icon" aria-hidden="true">▮</span><span><b>ЛИСТИНГИ</b><small>Планы проекта</small><i><u></u></i></span></a>
+        <a class="ribbon-goal" href="#goals"><span class="ribbon-icon" aria-hidden="true">▰</span><span><b>РЕАЛЬНЫЕ ПРОДУКТЫ</b><small>Идеи в работу</small><i><u></u></i></span></a>
+        <a class="ribbon-goal" href="#goals"><span class="ribbon-icon">⌂</span><span><b>СВОЙ ДОМ</b><small>Большая мечта</small><i><u></u></i></span></a>
+        <a class="ribbon-goal" href="#goals"><span class="ribbon-icon">♧</span><span><b>ПУТЕШЕСТВИЯ</b><small>Увидеть мир</small><i><u></u></i></span></a>
+        <a class="ribbon-goal" href="#goals"><span class="ribbon-icon">∞</span><span><b>НАСЛЕДИЕ</b><small>Думать о будущем</small><i><u></u></i></span></a>
+      </div>
+    </section>
+
+    <section class="section section-about" id="about" aria-labelledby="about-title" data-reveal>
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="section-kicker">01 / $WAIT</p><h2 class="section-title" id="about-title">О <span>ПРОЕКТЕ</span></h2></div>
+          <p class="section-lead">$WAIT — это идея для тех, кто пережил медвежий рынок, видел, как рушатся быстрые обещания, и всё равно продолжает ждать. WAIT — философия терпения и движения вперёд вместе.</p>
+        </div>
+        <div class="about-layout">
+          <div class="about-art">
+            <span class="about-art-label">WAIT<br>TOGETHER</span>
+            <span class="about-art-stamp">BUILD<br>INSTEAD</span>
+            <p>“DON'T PROMISE TOMORROW.<br>BUILD TODAY.”</p>
+          </div>
+          <div class="about-cards">
+            <article class="value-card"><span class="value-icon">♡</span><h3>ЧЕСТНОСТЬ</h3><p>Прозрачные параметры токена и открытые обновления.</p></article>
+            <article class="value-card"><span class="value-icon">♟</span><h3>СООБЩЕСТВО</h3><p>Главная ценность проекта — люди, которые верят.</p></article>
+            <article class="value-card"><span class="value-icon">↗</span><h3>РЕАЛЬНЫЕ ПРОДУКТЫ</h3><p>Полезные сервисы для трейдеров и комьюнити.</p></article>
+            <article class="value-card"><span class="value-icon">✓</span><h3>ДОЛГОСРОЧНОСТЬ</h3><p>Не только хайп, но и развитие.</p></article>
+          </div>
+        </div>
+        <div class="about-quote"><span>“</span><p>Мы не знаем, когда наступит альтсезон. Зато можем решить, чем займёмся, пока ждём.</p><b>— ИДЕЯ $WAIT</b></div>
+      </div>
+    </section>
+
+    <section class="section section-history" id="history" aria-labelledby="history-title" data-reveal>
+      <div class="container">
+        <div class="section-heading section-heading-light">
+          <div><p class="section-kicker">02 / ИСТОРИЯ</p><h2 class="section-title" id="history-title">ИСТОРИЯ <span>$WAIT</span></h2></div>
+          <p class="section-lead">Всё началось с простой мысли: почему большинство мемкоинов обещают, что всё произойдёт завтра? $WAIT появился из противоположной идеи — не изображать пройденный путь, а начать его вместе.</p>
+        </div>
+        <p class="fiction-note"><span>✦</span> Художественная история идеи проекта. $WAIT запускается в конце 2026 года.</p>
+        <div class="origin-story">
+          <div class="origin-poster" role="img" aria-label="Ночной город и силуэт героя WAIT"><span>STILL<br>WAITING</span><b>2026+</b></div>
+          <div class="origin-copy"><p>Не обещать завтра.<br>Не изображать успех.<br>Не делать вид, что путь уже пройден.</p><p>Просто ждать. Строить. Развиваться. И двигаться вместе с людьми, которые поверили в идею.</p><a class="text-link" href="#roadmap">Смотреть путь проекта <span>↗</span></a></div>
+        </div>
+        <ol class="history-line" aria-label="Этапы истории проекта">
+          <li><span class="line-icon">✦</span><b>ИДЕЯ</b><small>Конец 2026</small></li>
+          <li><span class="line-icon">✎</span><b>СОЗДАНИЕ</b><small>Конец 2026</small></li>
+          <li><span class="line-icon">🚀</span><b>ЗАПУСК</b><small>Конец 2026</small></li>
+          <li><span class="line-icon">♟</span><b>ПЕРВЫЕ УЧАСТНИКИ</b><small>После запуска</small></li>
+          <li><span class="line-icon">↗</span><b>РАЗВИТИЕ</b><small>2027</small></li>
+          <li><span class="line-icon">▣</span><b>ПРОДУКТЫ</b><small>2028</small></li>
+          <li><span class="line-icon">∞</span><b>БУДУЩЕЕ</b><small>2029+</small></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-goals" id="goals" aria-labelledby="goals-title" data-reveal>
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="section-kicker">03 / ПЛАНЫ $WAIT</p><h2 class="section-title" id="goals-title">НАШИ <span>ЦЕЛИ</span></h2></div>
+          <p class="section-lead">От ожидания к реальности, шаг за шагом. Это планы, а показатели сообщества появятся после подтверждения.</p>
+        </div>
+        <div class="goal-cards">
+          <article class="goal-card goal-yellow"><span class="goal-icon">↗</span><span class="goal-number">01</span><h3>РОСТ СООБЩЕСТВА</h3><p>Создать пространство, в котором можно расти и строить вместе.</p><b class="goal-status">—</b></article>
+          <article class="goal-card"><span class="goal-icon">▥</span><span class="goal-number">02</span><h3>ПЕРВЫЕ ЛИСТИНГИ</h3><p>Работать над доступностью токена после запуска.</p><b class="goal-status">СКОРО</b></article>
+          <article class="goal-card goal-orange"><span class="goal-icon">⚙</span><span class="goal-number">03</span><h3>РЕАЛЬНЫЕ ПРОДУКТЫ</h3><p>Развивать сервисы и инструменты экосистемы $WAIT.</p><b class="goal-status">ПЛАНЫ</b></article>
+          <article class="goal-card"><span class="goal-icon">⌂</span><span class="goal-number">04</span><h3>СОБСТВЕННЫЙ ДОМ</h3><p>Большая мечта, которая напоминает, зачем нужны цели.</p><b class="goal-status">—</b></article>
+          <article class="goal-card goal-yellow"><span class="goal-icon">♧</span><span class="goal-number">05</span><h3>ПУТЕШЕСТВИЯ</h3><p>Однажды вместе увидеть мир за пределами графиков.</p><b class="goal-status">—</b></article>
+          <article class="goal-card goal-orange"><span class="goal-icon">∞</span><span class="goal-number">06</span><h3>НАСЛЕДИЕ</h3><p>Создавать вещи, которые будут важны и после очередного цикла.</p><b class="goal-status">ВПЕРЕДИ</b></article>
+        </div>
+        <p class="goal-footnote">Все значения сообщества оставлены пустыми до появления подтверждённых данных.</p>
+      </div>
+    </section>
+
+    <section class="section section-presale" id="presale" aria-labelledby="presale-title" data-reveal>
+      <div class="container">
+        <div class="section-heading section-heading-light">
+          <div><p class="section-kicker">04 / УЧАСТВУЙ В ЗАПУСКЕ</p><h2 class="section-title" id="presale-title">ПРЕСЕЙЛ <span>$WAIT</span></h2></div>
+          <p class="section-lead">Приобретение токенов за USDT планируется на этапе пресейла. Параметры продажи, адрес контракта и поддерживаемая сеть будут опубликованы перед стартом.</p>
+        </div>
+        <div class="presale-board">
+          <div class="presale-info">
+            <div class="presale-lockup"><div class="presale-badge"><span class="live-dot"></span> DETAILS COMING SOON</div><img class="presale-logo" src="assets/wait-logo.png" alt=""></div>
+            <h3>BE PART OF<br>THE STORY BEFORE LISTING.</h3>
+            <p>Сначала — прозрачные условия и проверяемый контракт. До их публикации транзакции недоступны.</p>
+            <ul class="trust-list">
+              <li><span>✓</span> Условия появятся до начала продажи</li>
+              <li><span>✓</span> Поддерживаемая сеть будет указана отдельно</li>
+              <li><span>✓</span> Никаких тестовых или фальшивых транзакций</li>
+              <li><span>✓</span> Адрес контракта опубликуем здесь</li>
+            </ul>
+            <button class="button button-outline" type="button" data-open-help>Как купить? <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="sale-card">
+            <div class="sale-top"><span>ЭТАП ПРЕСЕЙЛА</span><b data-presale-stage>ОЖИДАЕТ СТАРТА</b></div>
+            <div class="price-pair">
+              <div><span>ТЕКУЩАЯ ЦЕНА</span><strong data-presale-price>—</strong><small>USDT / $WAIT</small></div>
+              <span class="price-arrow">→</span>
+              <div><span>СЛЕДУЮЩИЙ ЭТАП</span><strong data-next-price>—</strong><small>будет объявлен</small></div>
+            </div>
+            <div class="sold-row"><span>ПРОДАНО</span><b data-sold-label>— / — $WAIT</b></div>
+            <div class="progress-track" role="progressbar" aria-label="Прогресс пресейла" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-sale-progress></span></div>
+            <div class="progress-meta"><span data-sale-percent>Данные появятся до старта</span><span data-sale-allocation>—</span></div>
+            <div class="countdown-header"><span>ДО ОКОНЧАНИЯ ЭТАПА</span><small data-countdown-status>Дата будет объявлена</small></div>
+            <div class="countdown">
+              <div><b data-count="days">--</b><span>ДНЕЙ</span></div><i>:</i>
+              <div><b data-count="hours">--</b><span>ЧАСОВ</span></div><i>:</i>
+              <div><b data-count="minutes">--</b><span>МИНУТ</span></div><i>:</i>
+              <div><b data-count="seconds">--</b><span>СЕКУНД</span></div>
+            </div>
+            <button class="button button-yellow button-purchase" type="button" data-open-purchase>Купить за USDT <span aria-hidden="true">→</span></button>
+            <p class="sale-footnote">Покупка станет доступна после публикации параметров и подключения контракта.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tokenomics" id="tokenomics" aria-labelledby="tokenomics-title" data-reveal>
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="section-kicker">05 / ПРОЗРАЧНОЕ РАСПРЕДЕЛЕНИЕ</p><h2 class="section-title" id="tokenomics-title">ТОКЕНОМИКА</h2></div>
+          <p class="section-lead">Общее предложение — <span data-total-supply-number>1 000 000 000</span> $WAIT. Распределение отражает план проекта и может быть обновлено до запуска.</p>
+        </div>
+        <div class="tokenomics-layout">
+          <div class="allocation-chart-wrap"><div class="allocation-chart" role="img" aria-label="Распределение токенов по категориям"><div><b data-total-supply-short>1B</b><img class="allocation-logo" src="assets/wait-logo.png" alt=""></div></div><p>ОБЩЕЕ ПРЕДЛОЖЕНИЕ<br><b data-total-supply-copy>1,000,000,000 $WAIT</b></p></div>
+          <div class="allocation-list" id="allocation-list">
+            <div class="allocation-row" data-allocation="presale"><i></i><span><b>60%</b><small>Presale / Liquidity / Community</small></span></div>
+            <div class="allocation-row" data-allocation="marketing"><i></i><span><b>15%</b><small>Marketing &amp; Growth</small></span></div>
+            <div class="allocation-row" data-allocation="development"><i></i><span><b>10%</b><small>Разработка приложения</small></span></div>
+            <div class="allocation-row" data-allocation="team"><i></i><span><b>10%</b><small>Команда</small></span></div>
+            <div class="allocation-row" data-allocation="reserve"><i></i><span><b>5%</b><small>Резерв и партнёрства</small></span></div>
+          </div>
+        </div>
+        <div class="token-facts">
+          <article><span>◈</span><b>0% TAX</b><small>Планируемая модель</small></article>
+          <article><span>♧</span><b>ЛИКВИДНОСТЬ</b><small>Будет объявлена</small></article>
+          <article><span>✓</span><b>КОНТРАКТ</b><small>Будет опубликован</small></article>
+          <article><span>⌕</span><b>ПРОЗРАЧНОСТЬ</b><small>Статус: в планах</small></article>
+          <article><span>♟</span><b>СООБЩЕСТВО</b><small>На старте проекта</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-roadmap" id="roadmap" aria-labelledby="roadmap-title" data-reveal>
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="section-kicker">06 / ОТ ИДЕИ К ПРОДУКТАМ</p><h2 class="section-title" id="roadmap-title">ROADMAP</h2></div>
+          <p class="section-lead">План начинается с запуска проекта в конце 2026 года. Этапы описывают намерения, а не гарантируют сроки или рыночный результат.</p>
+        </div>
+        <div class="roadmap-track">
+          <article class="roadmap-phase roadmap-now"><div class="phase-top"><span>Q4 2026</span><i>01</i></div><h3>ЗАПУСК</h3><ul><li>Создание проекта и запуск сайта</li><li>Подготовка пресейла</li><li>Первые участники</li><li>Запуск социальных каналов</li><li>Формирование сообщества</li></ul><span class="phase-status">ТЕКУЩИЙ ЭТАП</span></article>
+          <article class="roadmap-phase"><div class="phase-top"><span>2027</span><i>02</i></div><h3>РОСТ</h3><ul><li>Развитие сообщества</li><li>Первые листинги</li><li>Развитие продукта</li><li>Разработка $WAIT Wallet</li><li>Новости, аналитика, партнёрства</li></ul><span class="phase-status">В ПЛАНАХ</span></article>
+          <article class="roadmap-phase"><div class="phase-top"><span>2028</span><i>03</i></div><h3>ПРОДУКТЫ</h3><ul><li>Запуск приложения</li><li>Развитие кошелька</li><li>Аналитика рынка</li><li>AI-инструменты</li><li>Расширение экосистемы</li></ul><span class="phase-status">В ПЛАНАХ</span></article>
+          <article class="roadmap-phase roadmap-future"><div class="phase-top"><span>2029+</span><i>04</i></div><h3>ГЛОБАЛЬНО</h3><ul><li>Масштабирование</li><li>Новые продукты</li><li>Международное сообщество</li><li>Развитие экосистемы</li></ul><span class="phase-status">БУДУЩЕЕ</span></article>
+        </div>
+        <p class="roadmap-note"><span>✦</span> Дорожная карта может меняться по мере развития проекта.</p>
+      </div>
+    </section>
+
+    <section class="section section-app" id="app" aria-labelledby="app-title" data-reveal>
+      <div class="container">
+        <div class="section-heading section-heading-light">
+          <div><p class="section-kicker">07 / ПРОДУКТ В РАЗРАБОТКЕ</p><h2 class="section-title" id="app-title">ПРИЛОЖЕНИЕ <span>$WAIT</span></h2></div>
+          <p class="section-lead">Всё, что нужно крипто-трейдеру, в одном приложении. Это будущий продукт: показанные экраны — концепт, приложение ещё не выпущено.</p>
+        </div>
+        <div class="app-layout">
+          <div class="app-copy">
+            <div class="app-status"><span class="live-dot"></span> В РАЗРАБОТКЕ</div>
+            <h3>ОДНО ПРИЛОЖЕНИЕ.<br><span>МНОГО ВОЗМОЖНОСТЕЙ.</span></h3>
+            <p>$WAIT App объединит функции, которые трейдеры используют каждый день. Сейчас это план и интерфейсный концепт.</p>
+            <ul class="app-feature-list">
+              <li>♧ <span><b>$WAIT WALLET</b><small>Криптокошелёк</small></span></li>
+              <li>▥ <span><b>ЦЕНЫ И ГРАФИКИ</b><small>Трекинг рынка и портфеля</small></span></li>
+              <li>✦ <span><b>AI INSIGHTS</b><small>Аналитические инструменты</small></span></li>
+              <li>☷ <span><b>НОВОСТИ И УВЕДОМЛЕНИЯ</b><small>События рынка и инсайды сообщества</small></span></li>
+              <li>☆ <span><b>ИЗБРАННЫЕ МОНЕТЫ</b><small>Watchlist под рукой</small></span></li>
+            </ul>
+            <a class="button button-yellow" href="#roadmap">Этапы разработки <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="phone-stage" aria-label="Макеты экранов приложения $WAIT">
+            <div class="phone phone-back">
+              <div class="phone-notch"></div><div class="phone-top"><span>9:41</span><span>●●● ▰</span></div>
+              <div class="phone-brand"><b><img src="assets/wait-logo.png" alt=""></b><span>DEMO</span></div>
+              <div class="phone-title">AI INSIGHTS</div><div class="phone-panel insight-panel"><small>MARKET OVERVIEW · CONCEPT</small><b>STAY THE COURSE.<br>WAIT FOR YOUR MOMENT.</b><p>Less noise. More signal.</p><span>COMING SOON</span><img class="insight-mascot" src="assets/voit-app-sticker.png" alt="" aria-hidden="true"></div>
+              <div class="phone-title">WATCHLIST</div><div class="phone-asset"><i>₿</i><span><b>Bitcoin</b><small>BTC · demo</small></span><strong>—</strong></div><div class="phone-asset"><i>◆</i><span><b>Ethereum</b><small>ETH · demo</small></span><strong>—</strong></div><div class="phone-asset"><i>W</i><span><b>$WAIT</b><small>WAIT · concept</small></span><strong>—</strong></div><div class="phone-bottom">⌂　　 ▥　　 ◷　　 ♙</div>
+            </div>
+            <div class="phone phone-front">
+              <div class="phone-notch"></div><div class="phone-top"><span>9:41</span><span>●●● ▰</span></div>
+              <div class="phone-brand"><b><img src="assets/wait-logo.png" alt=""></b><span>DEMO</span></div>
+              <div class="wallet-greeting">YOUR WALLET <span>⋯</span></div>
+              <div class="wallet-total">— <small>USD</small></div><div class="wallet-muted">Balance will appear after connection</div>
+              <div class="wallet-quick"><span>↓<small>Receive</small></span><span>↑<small>Send</small></span><span>⇄<small>Swap</small></span></div>
+              <div class="phone-title">PORTFOLIO <small>DEMO</small></div>
+              <div class="phone-asset"><i>₿</i><span><b>Bitcoin</b><small>BTC</small></span><strong>—</strong></div>
+              <div class="phone-asset"><i>◆</i><span><b>Ethereum</b><small>ETH</small></span><strong>—</strong></div>
+              <div class="phone-asset"><i class="wait-coin">W</i><span><b>$WAIT</b><small>WAIT</small></span><strong>—</strong></div>
+              <div class="mini-chart"><span>$WAIT PRICE · DEMO</span><svg viewBox="0 0 230 55" aria-hidden="true"><path d="M1 43 18 35 34 39 50 19 65 29 83 10 97 28 113 22 132 32 147 8 163 18 178 12 195 26 211 7 229 12" /></svg></div>
+              <div class="phone-bottom">⌂　　 ▥　　 ◷　　 ♙</div>
+            </div>
+            <span class="phone-burst">COMING SOON!</span>
+            <p class="phone-disclaimer">These screens are a demo concept, not connected to a wallet or market data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-community" id="community" aria-labelledby="community-title" data-reveal>
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="section-kicker">08 / ЛЮДИ. ИДЕИ. ПОДДЕРЖКА.</p><h2 class="section-title" id="community-title">СООБЩЕСТВО</h2></div>
+          <p class="section-lead">Сообщество ещё создаётся. Здесь не будет придуманных участников или активности — только реальные люди и подтверждённые данные после запуска.</p>
+        </div>
+        <div class="community-metrics">
+          <div><span>HOLDERS</span><b>—</b></div><div><span>СООБЩЕСТВО</span><b>—</b></div><div><span>X</span><b>—</b></div><div><span>TIKTOK</span><b>—</b></div><div><span>ACTIVE MEMBERS</span><b>—</b></div>
+        </div>
+        <div class="community-layout">
+          <div class="community-board">
+            <span class="board-label">WAIT COMMUNITY · COMING SOON</span>
+            <article class="community-note note-yellow"><small>01 / SHARE</small><b>IDEAS<br>&amp; VOTING</b><span>Your voice matters.</span></article>
+            <article class="community-note note-red"><small>02 / DISCUSS</small><b>MARKET<br>TALK</b><span>Think together.</span></article>
+            <article class="community-note note-blue"><small>03 / TOGETHER</small><b>COMMUNITY<br>EVENTS</b><span>Partnerships and more.</span></article>
+            <span class="board-crown">♛</span>
+          </div>
+          <div class="community-copy">
+            <div class="future-stamp">COMING SOON</div>
+            <h3>PEOPLE WHO<br><span>UNDERSTAND THE WAIT.</span></h3>
+            <p>Обсуждение рынка, идеи, голосования, совместные активности и партнёрства — всё это впереди. Ссылки на официальные X и TikTok появятся здесь после подтверждения аккаунтов.</p>
+            <div class="community-actions">
+              <a class="button button-social" href="https://x.com/waitt122?s=11" target="_blank" rel="noopener noreferrer"><span>𝕏</span> Follow on X</a>
+              <a class="button button-social" href="https://www.tiktok.com/@waittok2?_r=1&amp;_t=ZG-9AFaHgIhptx" target="_blank" rel="noopener noreferrer"><span>♪</span> TikTok</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-faq" id="faq" aria-labelledby="faq-title" data-reveal>
+      <div class="container faq-layout">
+        <div class="faq-intro"><p class="section-kicker">09 / ОТВЕТЫ НА ГЛАВНЫЕ ВОПРОСЫ</p><h2 class="section-title" id="faq-title">FAQ</h2><p class="section-lead">Коротко и по делу — о $WAIT, пресейле и планах проекта.</p><div class="faq-sticker">ASK<br>WAIT!</div></div>
+        <div class="faq-list">
+          <details class="faq-item"><summary>Что такое $WAIT?<span>+</span></summary><p>$WAIT — мемкоин и идея сообщества для тех, кто всё ещё ждёт альтсезон. Проект находится на этапе запуска и не обещает доход или рост цены.</p></details>
+          <details class="faq-item"><summary>Что такое пресейл?<span>+</span></summary><p>Пресейл — планируемая продажа токенов до листинга. Условия, цена, даты и поддерживаемая сеть будут опубликованы до её начала.</p></details>
+          <details class="faq-item"><summary>Как купить $WAIT?<span>+</span></summary><p>После публикации параметров можно будет подключить совместимый кошелёк и приобрести токены за USDT в поддерживаемой сети. Пока контракт не подключён, покупка недоступна.</p></details>
+          <details class="faq-item"><summary>За что можно купить токены?<span>+</span></summary><p>Планируется оплата USDT. Поддерживаемая сеть будет объявлена до начала пресейла.</p></details>
+          <details class="faq-item"><summary>Есть ли налоги?<span>+</span></summary><p>План проекта — 0% налога. Окончательные параметры подтвердят при публикации контракта.</p></details>
+          <details class="faq-item"><summary>Какая сеть используется?<span>+</span></summary><p>Сеть ещё не объявлена. Мы не указываем BSC, Ethereum или другую сеть до технического решения.</p></details>
+          <details class="faq-item"><summary>Когда будет листинг?<span>+</span></summary><p>Дата листинга пока не объявлена. Первые листинги — одна из целей roadmap, но срок не гарантируется.</p></details>
+          <details class="faq-item"><summary>Когда появится приложение?<span>+</span></summary><p>$WAIT App ещё не выпущено. Разработка запланирована в roadmap; ориентир для продуктов — 2028 год.</p></details>
+          <details class="faq-item"><summary>Что будет в $WAIT App?<span>+</span></summary><p>В концепт входят кошелёк, новости, цены и графики, AI-инструменты, инсайды сообщества, избранные монеты, уведомления и портфель.</p></details>
+          <details class="faq-item"><summary>Как работает сообщество?<span>+</span></summary><p>Сообщество ещё создаётся. Ссылки на официальные X и TikTok появятся здесь после подтверждения аккаунтов.</p></details>
+          <details class="faq-item"><summary>Какие планы на будущее?</summary><p>Запуск в конце 2026 года, развитие сообщества и продукта в 2027, приложение и инструменты в 2028, дальнейшее расширение с 2029 года.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="brand" href="#home" aria-label="$WAIT — главная"><img class="brand-logo" src="assets/wait-logo.png" alt=""></a>
+      <p>STILL WAITING<br>FOR <em>ALTSEASON.</em></p>
+      <a class="button button-outline" href="#home">Наверх ↑</a>
+    </div>
+    <div class="container footer-bottom"><span>© <span data-current-year>2026</span> $WAIT · СОЗДАЁТСЯ СЕЙЧАС</span><nav aria-label="Навигация в подвале"><a href="#about">О проекте</a><a href="#presale">Пресейл</a><a href="#tokenomics">Токеномика</a><a href="#faq">FAQ</a></nav><span class="footer-note">Не является финансовой рекомендацией.</span></div>
+  </footer>
+
+  <dialog class="modal" id="purchase-dialog" aria-labelledby="purchase-title">
+    <form method="dialog"><button class="modal-close" aria-label="Закрыть окно">×</button></form>
+    <div class="modal-icon"><img src="assets/wait-logo.png" alt=""></div><p class="section-kicker">ПРЕСЕЙЛ $WAIT</p><h2 id="purchase-title">ПОКУПКА ЗА USDT</h2>
+    <p class="modal-copy">Подключите кошелёк, чтобы проверить готовность. Покупка станет доступна после публикации сети, цены и контракта.</p>
+    <div class="modal-network"><span>СЕТЬ</span><b data-network-label>Будет объявлена</b></div>
+    <label class="modal-label" for="purchase-amount">СУММА В USDT</label><input id="purchase-amount" class="modal-input" type="number" min="0" step="any" placeholder="0.00" inputmode="decimal" disabled>
+    <div class="quote-row"><span>Вы получите</span><b data-purchase-quote>— $WAIT</b></div>
+    <button class="button button-outline button-wide" type="button" data-wallet-connect>Подключить кошелёк</button>
+    <button class="button button-yellow button-wide" type="button" data-confirm-purchase disabled>Параметры скоро появятся</button>
+    <p class="modal-status" data-wallet-status role="status" aria-live="polite">Покупка сейчас недоступна. Транзакции не отправляются.</p>
+  </dialog>
+
+  <dialog class="modal modal-help" id="help-dialog" aria-labelledby="help-title">
+    <form method="dialog"><button class="modal-close" aria-label="Закрыть окно">×</button></form>
+    <div class="modal-icon"><img src="assets/wait-logo.png" alt=""></div><p class="section-kicker">ПОСЛЕ ОБЪЯВЛЕНИЯ УСЛОВИЙ</p><h2 id="help-title">КАК КУПИТЬ $WAIT</h2>
+    <ol class="buy-steps"><li><b>Проверьте официальные параметры</b><span>Цену, дату продажи, сеть и адрес контракта опубликуем здесь.</span></li><li><b>Подготовьте кошелёк и USDT</b><span>Используйте только совместимую сеть из официального объявления.</span></li><li><b>Подключите кошелёк на сайте</b><span>Проверьте домен и условия покупки до подтверждения.</span></li><li><b>Подтвердите транзакцию</b><span>Сверьте сеть, сумму и адрес получателя в самом кошельке.</span></li></ol>
+    <p class="modal-status">До подключения реального контракта покупка отключена.</p>
+    <button class="button button-yellow button-wide" type="button" data-close-help>Понятно</button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
